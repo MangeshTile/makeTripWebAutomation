@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'Maven-3.9.6'   // The name you gave in Global Tool Config
-        jdk 'JDK-17'          // The name you gave for JDK
+        jdk 'jdk-17'          // The name you gave for JDK
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
 
         stage('Test Report') {
             steps {
-                junit 'test-output/testng-results.xml'
+                step([$class: 'Publisher', reportName: 'TestNG Results', testResults: 'test-output/testng-results.xml'])
             }
         }
     }
